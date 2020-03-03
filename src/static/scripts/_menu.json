@@ -1,0 +1,12 @@
+{
+  "moduleId": "DINGDING",
+  "menuTree": [
+    {
+      "code": "DINGDING_ROOT_ITEM",
+      "onMenu": "__DINGDING",
+      "name": "环境质量",
+      "action": "/views/dashboard.html"
+    }
+  ],
+  "menuItems":[]
+}
