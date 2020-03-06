@@ -11,6 +11,7 @@ import Switch from '@/components/Switch.vue'
 Vue.component('HeaderBar', HeaderBar)
 Vue.component('AepSwitch', Switch)
 
+
 // 模拟注册，自动添加cookie（钉钉项目里此文件作用是获取钉钉手机号码并存储）
 import '@/assets/scripts/permission'
 

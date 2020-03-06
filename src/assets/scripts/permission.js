@@ -12,14 +12,16 @@ const {
   tokenkey
 } = loginInfo
 
-axios.post(`${host}/token`, {
-  userid,
-  password,
-  'grant_type': 'password'
-}).then(res => {
-  if (res.data.err) {
-    console.log(res.data.err)
-  } else {
-    cookie.set(tokenkey, res.data.access_token)
-  }
-})
+if (process.env.NODE_ENV === 'development') {
+  axios.post(`${host}/token`, {
+    userid,
+    password,
+    'grant_type': 'password'
+  }).then(res => {
+    if (res.data.err) {
+      console.log(res.data.err)
+    } else {
+      cookie.set(tokenkey, res.data.access_token)
+    }
+  })
+}
