@@ -5,12 +5,13 @@
       :lat="lat"
       @submit="submit"
     ></my-lng-lat>
+    <!-- 传入必须为wgs84 坐标，传出也是wgs84 -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'lnglat',
   data () {
     return {
       lng: 117.000923,

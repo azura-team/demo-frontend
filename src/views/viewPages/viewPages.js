@@ -7,9 +7,13 @@ import store from '@/store/viewPages'
 
 // 全局组件
 import HeaderBar from '@/components/HeaderBar.vue'
-import Switch from '@/components/Switch.vue'
+import Select from '@/components/Select.vue'
+import Area from '@/components/Area.vue'
+import LngLat from '@/components/LngLat.vue'
 Vue.component('HeaderBar', HeaderBar)
-Vue.component('AepSwitch', Switch)
+Vue.component('MySelect', Select)
+Vue.component('MyArea', Area)
+Vue.component('MyLngLat', LngLat)
 
 
 // 模拟注册，自动添加cookie（钉钉项目里此文件作用是获取钉钉手机号码并存储）
@@ -17,6 +21,9 @@ import '@/assets/scripts/permission'
 
 //移动端自适应
 import '@/assets/scss/base.scss'
+
+// vant css
+import 'vant/lib/index.css'
 
 //icon
 import icon from '@/components/aepIcon.vue'
@@ -37,10 +44,6 @@ for (let key in global) {
   Vue.prototype[`$${key}`] = global[key]
 }
 
-// api接口
-import api from '@/apis'
-Vue.prototype.$api = api
-
 // 虚拟滚动（只有在可视区域才会挂载数据，防止列表过长导致卡顿）
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
@@ -58,6 +61,14 @@ import VueTouch from 'vue-touch'
 Vue.use(VueTouch, {
   name: 'v-touch'
 })
+
+{
+  const url = 'https://webapi.amap.com/maps?v=1.4.15&key=84af24a85c0ce6dbaa1dfca048fda1ae'
+  const jsapi = document.createElement('script')
+  jsapi.charset = 'utf-8'
+  jsapi.src = url
+  document.head.appendChild(jsapi)
+}
 
 //leaflet地图
 import 'leaflet'

@@ -183,48 +183,48 @@ $button-font-size: 14px !default;
 }
 
 // --------------------------------------------------
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-button,
-.btn {
-  position: relative;
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0; // For input.btn
-  font-size: $button-font-size;
-  font-weight: $font-weight-light;
-  line-height: 1.42; //增大，和bootstrap保持一致；
-  color: #333;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: top;
-  cursor: pointer;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ccc;
-  border-top-left-radius: 3px; //fixed android 4.2
-  border-top-right-radius: 3px; //fixed android 4.2
-  border-bottom-right-radius: 3px; //fixed android 4.2
-  border-bottom-left-radius: 3px; //fixed android 4.2
-  border-radius: 3px;
-  transition: all;
-  transition-duration: .2s;
-  transition-timing-function: linear;
+// input[type="button"],
+// input[type="submit"],
+// input[type="reset"],
+// button,
+// .btn {
+//   position: relative;
+//   display: inline-block;
+//   padding: 6px 12px;
+//   margin-bottom: 0; // For input.btn
+//   font-size: $button-font-size;
+//   font-weight: $font-weight-light;
+//   line-height: 1.42; //增大，和bootstrap保持一致；
+//   color: #333;
+//   text-align: center;
+//   white-space: nowrap;
+//   vertical-align: top;
+//   cursor: pointer;
+//   background-color: #fff;
+//   background-clip: padding-box;
+//   border: 1px solid #ccc;
+//   border-top-left-radius: 3px; //fixed android 4.2
+//   border-top-right-radius: 3px; //fixed android 4.2
+//   border-bottom-right-radius: 3px; //fixed android 4.2
+//   border-bottom-left-radius: 3px; //fixed android 4.2
+//   border-radius: 3px;
+//   transition: all;
+//   transition-duration: .2s;
+//   transition-timing-function: linear;
 
-  // Active & filled button styles
-  &:enabled:active,
-  &.active:enabled {
-    color: #fff;
-    background-color: #eef0f2;
-  }
+//   // Active & filled button styles
+//   &:enabled:active,
+//   &.active:enabled {
+//     color: #fff;
+//     background-color: #eef0f2;
+//   }
 
-  // Disabled styles & filled button active styles
-  &:disabled,
-  &.disabled {
-    opacity: .6;
-  }
-}
+//   // Disabled styles & filled button active styles
+//   &:disabled,
+//   &.disabled {
+//     opacity: .6;
+//   }
+// }
 
 // Primary button (Default color is blue)
 input[type="submit"],

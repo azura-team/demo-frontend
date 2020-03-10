@@ -13,8 +13,30 @@ Vue.use(Router)
 export default new Router({
   base: `${process.env.BASE_URL}/viewPages`,
   routes: [{
-    path: '/home',
-    name: 'home',
-    component: () => import('@/views/viewPages/modules/home.vue')
-  }]
+      path: '/home',
+      name: 'home',
+      component: () => import('@/views/viewPages/modules/home.vue')
+    },
+    // example router
+    {
+      path: '/tab',
+      name: 'tab',
+      component: () => import('@/views/viewPages/example/tab/main.vue')
+    },
+    {
+      path: '/area',
+      name: 'area',
+      component: () => import('@/views/viewPages/example/area.vue')
+    },
+    {
+      path: '/select',
+      name: 'select',
+      component: () => import('@/views/viewPages/example/select.vue')
+    },
+    {
+      path: '/lnglat',
+      name: 'lnglat',
+      component: () => import('@/views/viewPages/example/lnglat.vue')
+    }
+  ]
 })
