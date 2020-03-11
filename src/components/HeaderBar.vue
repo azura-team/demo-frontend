@@ -1,13 +1,28 @@
 <template>
-  <div class="header is-fixed" :class="showBorder ? 'header-border' : ''">
+  <div
+    class="header is-fixed"
+    :class="showBorder ? 'header-border' : ''"
+  >
     <div class="header-bar">
-      <div class="header-left" @click="goBack">
-        <span class="icon" v-if="leftIcon">
-          <icon name="back" scale="1"></icon>
+      <div
+        class="header-left"
+        @click="goBack"
+      >
+        <span
+          class="icon"
+          v-if="leftIcon"
+        >
+          <icon
+            name="back"
+            scale="1"
+          ></icon>
         </span>
         <span class="text">{{ leftText }}</span>
       </div>
-      <div class="header-title" @click="clickTitle">
+      <div
+        class="header-title"
+        @click="clickTitle"
+      >
         <slot></slot>
       </div>
       <div class="header-right">
@@ -16,12 +31,24 @@
           v-if="isShowSearchIcon"
           @click="clickSearch"
         ></span>
-        <slot name="right" class="right-slot"></slot>
+        <slot
+          name="right"
+          class="right-slot"
+        ></slot>
       </div>
     </div>
-    <div class="searchBox" v-if="isShowSearchBox">
-      <span class="icon" @click="loadSearchData">
-        <icon name="search" scale="1"></icon>
+    <div
+      class="searchBox"
+      v-if="isShowSearchBox"
+    >
+      <span
+        class="icon"
+        @click="loadSearchData"
+      >
+        <icon
+          name="search"
+          scale="1"
+        ></icon>
       </span>
       <input
         type="text"
@@ -29,7 +56,10 @@
         placeholder="请输入关键字"
         @keypress="confirmSearch"
       />
-      <span v-if="searchValue" @click="loadSearchData">搜索</span>
+      <span
+        v-if="searchValue"
+        @click="loadSearchData"
+      >搜索</span>
     </div>
   </div>
 </template>
@@ -59,12 +89,12 @@ export default {
     //搜索框显示隐藏
     toggleSearchBox: {
       type: Function,
-      default: function() {}
+      default: function () { }
     },
     //搜索框搜索
     serachFun: {
       type: Function,
-      default: function() {}
+      default: function () { }
     },
     //是否显示搜索框
     isShowSearchIcon: {
@@ -79,17 +109,17 @@ export default {
     //点击标题触发
     barTitle: {
       type: Function,
-      default: function() {}
+      default: function () { }
     }
   },
-  data() {
+  data () {
     return {
       searchValue: '',
       isShowSearchBox: false
     }
   },
   methods: {
-    goBack() {
+    goBack () {
       if (this.customBack) {
         this.customBack()
       } else {
@@ -97,19 +127,19 @@ export default {
       }
       this.$store.commit('set_loading', false)
     },
-    confirmSearch(e) {
+    confirmSearch (e) {
       if (e.keyCode == 13) {
         event.preventDefault()
         this.loadSearchData()
       }
     },
-    loadSearchData() {
+    loadSearchData () {
       this.serachFun(this.searchValue)
     },
-    clickTitle() {
+    clickTitle () {
       this.barTitle()
     },
-    clickSearch() {
+    clickSearch () {
       this.isShowSearchBox = !this.isShowSearchBox
       this.toggleSearchBox(this.isShowSearchBox)
     }
@@ -118,8 +148,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_flex.scss';
-@import '@/assets/scss/variables.scss';
+@import "@/assets/scss/_flex.scss";
+@import "@/assets/scss/variables.scss";
 .header.is-fixed {
   position: fixed;
   right: 0;

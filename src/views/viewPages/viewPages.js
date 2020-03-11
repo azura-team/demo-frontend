@@ -6,14 +6,18 @@ import router from '@/router/viewPages'
 import store from '@/store/viewPages'
 
 // 全局组件
-import HeaderBar from '@/components/HeaderBar.vue'
+import HeaderBarx from '@/components/HeaderBarx.vue'
+import Switchx from '@/components/Switchx.vue'
 import Select from '@/components/Select.vue'
 import Area from '@/components/Area.vue'
 import LngLat from '@/components/LngLat.vue'
-Vue.component('HeaderBar', HeaderBar)
+import DatePicker from '@/components/DatePicker.vue'
+Vue.component('MyHeader', HeaderBarx)
+Vue.component('MySwitch', Switchx)
 Vue.component('MySelect', Select)
 Vue.component('MyArea', Area)
 Vue.component('MyLngLat', LngLat)
+Vue.component('MyDatetimePicker', DatePicker)
 
 
 // 模拟注册，自动添加cookie（钉钉项目里此文件作用是获取钉钉手机号码并存储）

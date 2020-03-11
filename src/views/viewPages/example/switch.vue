@@ -1,20 +1,24 @@
 <template>
   <div class="main">
-    <my-datetime-picker
+    <my-switch
+      field-lable="标题标题"
       v-model="value"
-      type="datetime"
-      field-lable="时间"
-      format="YYYY-MM-DD HH:mm"
-    ></my-datetime-picker>
+      color="#238BF7"
+    ></my-switch>
+    <!-- 这个封装很简单
+      当传入的值是 true  or  false时， 传出的值也是true false
+       0  or 1    传出也是  0 1 
+       就是不会改变绑定值的类型
+     -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'mm-switch',
   data () {
     return {
-      value: ''
+      value: 1
     }
   },
   watch: {

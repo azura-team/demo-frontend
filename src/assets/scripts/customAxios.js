@@ -4,7 +4,7 @@ import {
   dev
 } from '../../../config_init'
 const TokenKey = dev.loginInfo.tokenkey
-// import store from '@/store'
+import store from '@/store/viewPages'
 
 const customAxios = (prefix = '') => {
   let service = null
@@ -39,11 +39,11 @@ const customAxios = (prefix = '') => {
   // response 拦截器
   responseInstance = service.interceptors.response.use(
     response => {
-      // store.commit('set_loading', false)
+      store.commit('set_loading', false)
       return response.data
     },
     error => {
-      // store.commit('set_loading', false)
+      store.commit('set_loading', false)
       return Promise.reject(error)
     }
   )

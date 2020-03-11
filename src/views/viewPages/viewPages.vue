@@ -5,30 +5,44 @@
         <router-view></router-view>
       </transition>
     </navigation>
-    <!-- <img src="../../assets/images/loading.svg" class="loadImg" v-if="loading" /> -->
+    <van-loading
+      v-if="loading"
+      class="loading"
+      color="#1989fa"
+      size="1rem"
+    />
   </div>
 </template>
 
 <script>
+import { Loading, Dialog } from 'vant'
 export default {
   name: 'app',
-  data() {
+  components: {
+    'van-loading': Loading
+  },
+  data () {
     return {
       transitionName: 'fade',
       timer: null
     }
   },
   computed: {
-    loading() {
+    loading () {
       return this.$store.state.loading
     }
   },
   watch: {
-    loading() {
+    loading () {
       clearTimeout(this.timer)
       if (this.loading) {
         this.timer = setTimeout(() => {
           this.$store.commit('set_loading', false)
+          Dialog.alert({
+            message: '获取内容失败！'
+          }).then(() => {
+            // on close
+          })
         }, 20 * 1000)
       }
     }
@@ -37,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-.loadImg {
+.loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -45,7 +59,7 @@ export default {
   bottom: 0;
   margin: auto;
   z-index: 9999;
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1rem;
+  height: 1rem;
 }
 </style>

@@ -10,14 +10,16 @@ Router.prototype.push = function push(location, onResolve, onReject) {
 }
 Vue.use(Router)
 
-export default new Router({
-  base: `${process.env.BASE_URL}/viewPages`,
-  routes: [{
-      path: '/home',
-      name: 'home',
-      component: () => import('@/views/viewPages/modules/home.vue')
-    },
+let routers = []
+if (process.env.NODE_ENV === 'development') {
+  routers = [
+    ...routers,
     // example router
+    {
+      path: '/example',
+      name: 'example',
+      component: () => import('@/views/viewPages/example/index.vue')
+    },
     {
       path: '/tab',
       name: 'tab',
@@ -37,6 +39,35 @@ export default new Router({
       path: '/lnglat',
       name: 'lnglat',
       component: () => import('@/views/viewPages/example/lnglat.vue')
+    },
+    {
+      path: '/header',
+      name: 'header',
+      component: () => import('@/views/viewPages/example/header.vue')
+    },
+    {
+      path: '/switch',
+      name: 'switch',
+      component: () => import('@/views/viewPages/example/switch.vue')
+    },
+    {
+      path: '/datetimepicker',
+      name: 'datetimepicker',
+      component: () => import('@/views/viewPages/example/datetimepicker.vue')
     }
   ]
+}
+
+routers = [
+  ...routers,
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('@/views/viewPages/modules/home.vue')
+  }
+]
+
+export default new Router({
+  base: `${process.env.BASE_URL}/viewPages`,
+  routes: routers
 })
