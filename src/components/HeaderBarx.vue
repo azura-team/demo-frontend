@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="header-bar"
-    :class="{noneShowBorder: !showBorder}"
-  >
+  <div class="header-bar" :class="{ noneShowBorder: !showBorder }">
     <div class="nav-t"></div>
-    <div
-      class="search-t search-box"
-      :class="{active:isShowSearchBox}"
-    ></div>
+    <div class="search-t search-box" :class="{ active: isShowSearchBox }"></div>
     <div class="nav-main">
       <van-nav-bar
         :title="title"
@@ -16,7 +10,6 @@
         class="my-header-bar"
         @click-left="goBack"
       >
-
         <div slot="right">
           <van-button
             type="default"
@@ -27,11 +20,9 @@
           <slot></slot>
         </div>
       </van-nav-bar>
-      <div
-        class="search-box"
-        :class="{active:isShowSearchBox}"
-      >
+      <div class="search-box" :class="{ active: isShowSearchBox }">
         <van-search
+          class="search-box-son"
           v-model="searchValue"
           show-action
           placeholder="请输入搜索关键词"
@@ -69,7 +60,7 @@ export default {
     //搜索框搜索
     serachFun: {
       type: Function,
-      default: function () { }
+      default: function() {}
     },
     //是否显示搜索框
     isShowSearchIcon: {
@@ -164,6 +155,11 @@ export default {
     -o-transition: height 0.4s;
     &.active {
       height: 54px;
+    }
+    .search-box-son {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
   }
 }
