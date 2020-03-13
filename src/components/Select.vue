@@ -7,6 +7,8 @@
       :value="myname"
       @click="showPicker = true"
       right-icon="arrow"
+      :placeholder="`选择${fieldLable}`"
+      input-align="right"
     />
     <van-popup
       v-model="showPicker"
@@ -65,23 +67,17 @@ export default {
       default: ''
     }
   },
-  data () {
+  data() {
     return {
       myval: this.fromval,
       showPicker: false
     }
   },
   computed: {
-    columns () {
-      let obj = {}
-      obj[this.valName] = `--- 选择${this.fieldLable} ---`
-      obj[this.valKey] = this.noneVal
-      return [
-        obj,
-        ...this.data
-      ]
+    columns() {
+      return this.data
     },
-    defaultIndex () {
+    defaultIndex() {
       let temp = 0
       this.columns.forEach((item, index) => {
         if (item[this.valKey] === this.myval) {
@@ -90,7 +86,7 @@ export default {
       })
       return temp
     },
-    myname () {
+    myname() {
       let temp = ''
       this.columns.forEach(item => {
         if (item[this.valKey] === this.myval) {
@@ -101,7 +97,7 @@ export default {
     }
   },
   methods: {
-    onConfirm (value) {
+    onConfirm(value) {
       this.myval = value[this.valKey]
       this.$emit('valuePut', this.myval)
       this.showPicker = false

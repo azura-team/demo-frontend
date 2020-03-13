@@ -7,6 +7,7 @@
       :value="myval2"
       @click="showMap = true"
       right-icon="aim"
+      input-align="right"
     />
     <van-popup
       v-model="showMap"
@@ -72,7 +73,7 @@ export default {
       default: 36.675807
     }
   },
-  data () {
+  data() {
     return {
       map: null,
       showMap: false,
@@ -81,35 +82,35 @@ export default {
     }
   },
   computed: {
-    mapStyle () {
+    mapStyle() {
       return {
         width: window.innerWidth + 'px',
         height: window.innerHeight + 'px'
       }
     },
-    trueLngLat () {
+    trueLngLat() {
       let data = this.gcj02towgs84(this.mylng, this.mylat)
       return {
         lng: data[0].toFixed(8),
         lat: data[1].toFixed(8)
       }
     },
-    myval () {
+    myval() {
       return `${this.trueLngLat.lng} E, ${this.trueLngLat.lat} N`
     },
-    myval2 () {
+    myval2() {
       return `${this.lng} E, ${this.lat} N`
     }
   },
   watch: {
-    showMap () {
+    showMap() {
       this.$nextTick(() => {
         this.defaultMap()
       })
     }
   },
   methods: {
-    defaultMap () {
+    defaultMap() {
       this.map = new AMap.Map(this.$refs.mapp, {
         center: [this.mylng, this.mylat],
         zoom: 11,
@@ -118,16 +119,16 @@ export default {
       this.map.on('moveend', this.logMapinfo)
       this.map.on('zoomend', this.logMapinfo)
     },
-    logMapinfo () {
+    logMapinfo() {
       let data = this.map.getCenter()
       this.mylng = data.lng
       this.mylat = data.lat
     },
-    onConfirm () {
+    onConfirm() {
       this.$emit('submit', this.trueLngLat)
       this.showMap = false
     },
-    wgs84togcj02 (lng, lat) {
+    wgs84togcj02(lng, lat) {
       lng = Number(lng)
       lat = Number(lat)
       let dlat = this.transformlat(lng - 105.0, lat - 35.0)
@@ -142,7 +143,7 @@ export default {
       let mglng = lng + dlng
       return [mglng, mglat]
     },
-    gcj02towgs84 (lng, lat) {
+    gcj02towgs84(lng, lat) {
       lng = Number(lng)
       lat = Number(lat)
       let dlat = this.transformlat(lng - 105.0, lat - 35.0)
@@ -157,14 +158,14 @@ export default {
       let mglng = lng + dlng
       return [lng * 2 - mglng, lat * 2 - mglat]
     },
-    transformlat (lng, lat) {
+    transformlat(lng, lat) {
       let ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + 0.1 * lng * lat + 0.2 * Math.sqrt(Math.abs(lng))
       ret += (20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0 / 3.0
       ret += (20.0 * Math.sin(lat * PI) + 40.0 * Math.sin(lat / 3.0 * PI)) * 2.0 / 3.0
       ret += (160.0 * Math.sin(lat / 12.0 * PI) + 320 * Math.sin(lat * PI / 30.0)) * 2.0 / 3.0
       return ret
     },
-    transformlng (lng, lat) {
+    transformlng(lng, lat) {
       let ret = 300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng))
       ret += (20.0 * Math.sin(6.0 * lng * PI) + 20.0 * Math.sin(2.0 * lng * PI)) * 2.0 / 3.0
       ret += (20.0 * Math.sin(lng * PI) + 40.0 * Math.sin(lng / 3.0 * PI)) * 2.0 / 3.0

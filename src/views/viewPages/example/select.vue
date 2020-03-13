@@ -22,7 +22,7 @@
 <script>
 export default {
   name: 'select',
-  data () {
+  data() {
     return {
       value: '',
       cdata: [
@@ -45,7 +45,7 @@ export default {
       ]
     }
   },
-  created () { },
+  created() { },
   methods: {}
 }
 </script>

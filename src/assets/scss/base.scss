@@ -226,6 +226,16 @@ $button-font-size: 14px !default;
 //   }
 // }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 // Primary button (Default color is blue)
 input[type="submit"],
 .btn-primary {

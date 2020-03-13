@@ -7,6 +7,8 @@
       :value="mydate"
       @click="showPicker = true"
       right-icon="arrow"
+      :placeholder="`选择${fieldLable}`"
+      input-align="right"
     />
     <van-popup
       v-model="showPicker"
@@ -16,6 +18,7 @@
         v-model="myval"
         :type="type"
         @confirm="onConfirm"
+        @cancel="showPicker = false"
       />
     </van-popup>
   </div>
@@ -52,7 +55,7 @@ export default {
       default: 'YYYY-MM-DD HH:mm:ss'
     }
   },
-  data () {
+  data() {
     return {
       myval: this.fromval ? new Date(this.fromval) : new Date(),
       showPicker: false,
@@ -60,12 +63,12 @@ export default {
     }
   },
   computed: {
-    mydate () {
-      return this.trueVal ? this.$moment(this.trueVal).format(this.format) : `--- 选择${this.fieldLable} ---`
+    mydate() {
+      return this.trueVal ? this.$moment(this.trueVal).format(this.format) : ''
     }
   },
   methods: {
-    onConfirm (value) {
+    onConfirm(value) {
       let date = this.$moment(value).format(this.format)
       this.myval = new Date(date)
       this.trueVal = date

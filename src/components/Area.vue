@@ -7,6 +7,8 @@
       :value="myname"
       @click="showPicker = true"
       right-icon="arrow"
+      :placeholder="`选择${fieldLable}`"
+      input-align="right"
     />
     <van-popup
       v-model="showPicker"
@@ -48,28 +50,37 @@ export default {
       default: 'name' // code
     }
   },
-  data () {
+  data() {
     return {
       pca: pca,
       myval: ['', '', ''],
-      showPicker: false
+      showPicker: false,
+      defaultPIndex: 0,
+      defaultCIndex: 0,
+      defaultAIndex: 0
     }
   },
   watch: {
-    value () {
+    value() {
       this.setDefault()
     }
   },
-  mounted () {
+  mounted() {
     this.setDefault()
   },
   computed: {
-    columns () {
-      let temp = this.$newObj(this.pca) || []
-      temp.forEach(p => {
+    columns() {
+      let temp = JSON.parse(JSON.stringify(this.pca)) || []
+      temp.forEach((p, pindex) => {
         p.text = p.name
-        p.children.forEach(c => {
+        if (pindex === this.defaultPIndex) {
+          p.defaultIndex = this.defaultCIndex
+        }
+        p.children.forEach((c, cindex) => {
           c.text = c.name
+          if (cindex === this.defaultCIndex) {
+            c.defaultIndex = this.defaultAIndex
+          }
           c.children.forEach(a => {
             a.text = a.name
           })
@@ -77,21 +88,22 @@ export default {
       })
       return temp
     },
-    myname () {
+    myname() {
       let name = this.myval.join(' ')
-      return name === '  ' ? `--- 选择${this.fieldLable} ---` : name
-    },
+      return name === '  ' ? '' : name
+    }
   },
   methods: {
-    setDefault () {
+    setDefault() {
       if (this.type === 'name') {
+        this.getCode(this.value)
         this.myval = this.value
       } else if (this.type === 'code') {
         let names = this.setCode(this.value)
         this.myval = names
       }
     },
-    onConfirm (e) {
+    onConfirm(e) {
       this.myval = e
       if (this.type === 'name') {
         this.$emit('submit', e)
@@ -101,18 +113,21 @@ export default {
       }
       this.showPicker = false
     },
-    setCode (arr) {
-      let temp = this.$newObj(this.pca) || []
+    setCode(arr) {
+      let temp = JSON.parse(JSON.stringify(this.pca)) || []
       let names = []
-      temp.forEach(p => {
+      temp.forEach((p, pindex) => {
         if (p.code == arr[0]) {
           names[0] = p.name
-          p.children.forEach(c => {
+          this.defaultPIndex = pindex
+          p.children.forEach((c, cindex) => {
             if (c.code == arr[1]) {
               names[1] = c.name
-              c.children.forEach(a => {
+              this.defaultCIndex = cindex
+              c.children.forEach((a, aindex) => {
                 if (a.code == arr[2]) {
                   names[2] = a.name
+                  this.defaultAIndex = aindex
                 }
               })
             }
@@ -121,18 +136,21 @@ export default {
       })
       return names
     },
-    getCode (arr) {
-      let temp = this.$newObj(this.pca) || []
+    getCode(arr) {
+      let temp = JSON.parse(JSON.stringify(this.pca)) || []
       let codes = []
-      temp.forEach(p => {
+      temp.forEach((p, pindex) => {
         if (p.name === arr[0]) {
           codes[0] = p.code
-          p.children.forEach(c => {
+          this.defaultPIndex = pindex
+          p.children.forEach((c, cindex) => {
             if (c.name === arr[1]) {
               codes[1] = c.code
-              c.children.forEach(a => {
+              this.defaultCIndex = cindex
+              c.children.forEach((a, aindex) => {
                 if (a.name === arr[2]) {
                   codes[2] = a.code
+                  this.defaultAIndex = aindex
                 }
               })
             }

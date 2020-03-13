@@ -54,6 +54,21 @@ if (process.env.NODE_ENV === 'development') {
       path: '/datetimepicker',
       name: 'datetimepicker',
       component: () => import('@/views/viewPages/example/datetimepicker.vue')
+    },
+    {
+      path: '/nodata',
+      name: 'nodata',
+      component: () => import('@/views/viewPages/example/nodata.vue')
+    },
+    {
+      path: '/isdev',
+      name: 'isdev',
+      component: () => import('@/views/viewPages/example/isdev.vue')
+    },
+    {
+      path: '/log',
+      name: 'log',
+      component: () => import('@/views/viewPages/example/log.vue')
     }
   ]
 }

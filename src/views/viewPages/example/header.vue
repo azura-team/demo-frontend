@@ -4,19 +4,28 @@
       title="标题标题"
       :is-show-search-icon="true"
       :show-border="true"
-    ></my-header>
+    >
+      <van-button
+        type="default"
+        icon="location-o"
+      ></van-button>
+    </my-header>
   </div>
 </template>
 
 <script>
+import { Button } from 'vant'
 export default {
   name: 'mm-header',
-  data () {
+  components: {
+    'van-button': Button
+  },
+  data() {
     return {
 
     }
   },
-  created () { },
+  created() { },
   methods: {
 
   }

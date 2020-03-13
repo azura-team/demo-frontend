@@ -20,7 +20,7 @@ export default {
     'van-grid': Grid,
     'van-grid-item': GridItem
   },
-  data () {
+  data() {
     return {
       list: [
         { name: 'tab', router: '/tab', icon: 'other-pay' },
@@ -29,11 +29,14 @@ export default {
         { name: 'lnglat', router: '/lnglat', icon: 'location-o' },
         { name: 'select', router: '/select', icon: 'label-o' },
         { name: 'switch', router: '/switch', icon: 'stop-circle-o' },
-        { name: 'area', router: '/area', icon: 'bookmark-o' }
+        { name: 'area', router: '/area', icon: 'bookmark-o' },
+        { name: 'nodata', router: '/nodata', icon: 'close' },
+        { name: 'isdev', router: '/isdev', icon: 'warning-o' },
+        { name: 'log', router: '/log', icon: 'orders-o' }
       ]
     }
   },
-  created () { },
+  created() { },
   methods: {
 
   }

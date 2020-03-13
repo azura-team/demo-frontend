@@ -112,14 +112,14 @@ export default {
       default: function () { }
     }
   },
-  data () {
+  data() {
     return {
       searchValue: '',
       isShowSearchBox: false
     }
   },
   methods: {
-    goBack () {
+    goBack() {
       if (this.customBack) {
         this.customBack()
       } else {
@@ -127,19 +127,19 @@ export default {
       }
       this.$store.commit('set_loading', false)
     },
-    confirmSearch (e) {
+    confirmSearch(e) {
       if (e.keyCode == 13) {
         event.preventDefault()
         this.loadSearchData()
       }
     },
-    loadSearchData () {
+    loadSearchData() {
       this.serachFun(this.searchValue)
     },
-    clickTitle () {
+    clickTitle() {
       this.barTitle()
     },
-    clickSearch () {
+    clickSearch() {
       this.isShowSearchBox = !this.isShowSearchBox
       this.toggleSearchBox(this.isShowSearchBox)
     }

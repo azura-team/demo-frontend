@@ -17,13 +17,15 @@
         @click-left="goBack"
       >
 
-        <van-button
-          slot="right"
-          type="default"
-          icon="search"
-          @click="isShowSearchBox = true"
-          v-if="isShowSearchIcon"
-        ></van-button>
+        <div slot="right">
+          <van-button
+            type="default"
+            icon="search"
+            @click="isShowSearchBox = true"
+            v-if="isShowSearchIcon"
+          ></van-button>
+          <slot></slot>
+        </div>
       </van-nav-bar>
       <div
         class="search-box"
@@ -55,11 +57,6 @@ export default {
       type: String,
       default: ''
     },
-    //头部导航 左侧要显示的图标
-    leftIcon: {
-      type: String,
-      default: ''
-    },
     //头部导航 左侧要显示的文字
     leftText: {
       type: String,
@@ -85,14 +82,14 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       searchValue: '',
       isShowSearchBox: false
     }
   },
   methods: {
-    goBack () {
+    goBack() {
       if (this.customBack) {
         this.customBack()
       } else {
@@ -101,16 +98,16 @@ export default {
       console.log(this.$store)
       this.$store.commit('set_loading', false)
     },
-    confirmSearch (e) {
+    confirmSearch(e) {
       if (e.keyCode == 13) {
         event.preventDefault()
         this.loadSearchData()
       }
     },
-    loadSearchData () {
+    loadSearchData() {
       this.serachFun(this.searchValue)
     },
-    clickTitle () {
+    clickTitle() {
       this.barTitle()
     }
   }
@@ -119,7 +116,6 @@ export default {
 
 <style lang="scss" scoped>
 .header-bar {
-  border: 1px solid #f1f4f8;
   &.noneShowBorder {
     border: 0;
   }
@@ -128,6 +124,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
+    border: 1px solid #f1f4f8;
   }
   .van-hairline--bottom::after {
     border-bottom-width: 0;
@@ -136,7 +133,10 @@ export default {
     height: 1rem;
     .van-button--default {
       border: 0;
-      height: 1rem;
+      padding: 0 10px;
+      .van-button__icon {
+        font-size: 1.4em;
+      }
     }
     .van-nav-bar__left {
       line-height: 1rem;
